@@ -51,3 +51,17 @@ Recommended client behavior:
 - validate payloads before send
 - retry transient failures with backoff
 - treat non-retriable `4xx` as hard failures
+
+## 7. Local Integration Without Production Credentials
+
+Use the included mock server (`mock-server/`) for schema-compatible development:
+- deterministic fake scoring outputs
+- same endpoint surface as public v1
+- no internal model logic exposure
+
+## 8. Optional Accelerators
+
+- Postman collection: `examples/postman_collection.json`
+- Minimal SDK wrappers:
+  - Python: `sdk/python/`
+  - JavaScript: `sdk/js/`

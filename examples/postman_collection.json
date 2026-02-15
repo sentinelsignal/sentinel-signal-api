@@ -1,0 +1,51 @@
+{
+  "info": {
+    "name": "Sentinel Signal Public API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "https://api.sentinelsignal.io"},
+    {"key": "apiKey", "value": "YOUR_API_KEY"}
+  ],
+  "item": [
+    {
+      "name": "Score",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Authorization", "value": "Bearer {{apiKey}}"},
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": "{{baseUrl}}/v1/score",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"workflow\": \"healthcare.denial\",\n  \"payload\": {\n    \"payer\": \"PAYER_X\",\n    \"cpt\": \"99213\",\n    \"icd10\": [\"E11.9\"],\n    \"billed_amount\": 250.0,\n    \"place_of_service\": \"11\",\n    \"in_network\": true\n  },\n  \"options\": {\n    \"operating_point\": \"high_recall\",\n    \"allow_fallback\": true\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "Workflows",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
+        "url": "{{baseUrl}}/v1/workflows"
+      }
+    },
+    {
+      "name": "Limits",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
+        "url": "{{baseUrl}}/v1/limits"
+      }
+    },
+    {
+      "name": "Usage",
+      "request": {
+        "method": "GET",
+        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
+        "url": "{{baseUrl}}/v1/usage"
+      }
+    }
+  ]
+}

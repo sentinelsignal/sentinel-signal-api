@@ -28,3 +28,7 @@ The objective is practical production safety:
 - transparent model metadata in responses
 - controlled degradation under drift conditions
 - documented operating profiles for consistent deployment
+
+## Public Boundary
+
+This public package intentionally excludes internal lock mechanisms, artifact hashing configuration, and internal datastore implementation details.

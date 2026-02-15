@@ -5,6 +5,7 @@ Sentinel Signal uses usage-based billing for API scoring calls.
 ## Billing Unit
 
 - Billable unit: successful scoring responses (`HTTP 2xx`) from scoring endpoints.
+- Non-billable: rejected authentication requests, validation failures, and rate-limit rejections.
 
 ## Plans
 
@@ -28,3 +29,13 @@ Sentinel Signal uses usage-based billing for API scoring calls.
 ## Reconciliation
 
 Usage reconciliation compares metered usage with billing-reported usage and flags drift for operational review.
+
+## Public Secret-Safety Policy
+
+This repository never publishes real Stripe identifiers or secrets.
+Use placeholders only in examples and docs:
+
+- `STRIPE_PRODUCT_ID=prod_xxx`
+- `STRIPE_PRICE_ID=price_live_xxx`
+- `STRIPE_WEBHOOK_SECRET=whsec_xxx`
+- `STRIPE_PUBLISHABLE_KEY=pk_live_xxx`
