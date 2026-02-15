@@ -1,0 +1,3042 @@
+{
+  "components": {
+    "schemas": {
+      "AppealGenerationRequest": {
+        "properties": {
+          "additional_context": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Additional Context"
+          },
+          "claim": {
+            "$ref": "#/components/schemas/DenialScoreRequest"
+          },
+          "denial_probability": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Probability"
+          },
+          "denial_reason_code": {
+            "anyOf": [
+              {
+                "maxLength": 20,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason Code"
+          },
+          "denial_reason_description": {
+            "anyOf": [
+              {
+                "maxLength": 500,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason Description"
+          },
+          "risk_level": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RiskLevel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tone": {
+            "$ref": "#/components/schemas/AppealTone",
+            "default": "concise"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "claim"
+        ],
+        "title": "AppealGenerationRequest",
+        "type": "object"
+      },
+      "AppealGenerationResponse": {
+        "properties": {
+          "appeal_letter": {
+            "title": "Appeal Letter",
+            "type": "string"
+          },
+          "denial_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Denial Probability",
+            "type": "number"
+          },
+          "generated_at": {
+            "format": "date-time",
+            "title": "Generated At",
+            "type": "string"
+          },
+          "generator_name": {
+            "title": "Generator Name",
+            "type": "string"
+          },
+          "generator_version": {
+            "title": "Generator Version",
+            "type": "string"
+          },
+          "key_points": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Key Points",
+            "type": "array"
+          },
+          "recommended_documents": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recommended Documents",
+            "type": "array"
+          },
+          "risk_level": {
+            "$ref": "#/components/schemas/RiskLevel"
+          },
+          "tone": {
+            "$ref": "#/components/schemas/AppealTone"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "appeal_letter",
+          "key_points",
+          "recommended_documents",
+          "tone",
+          "denial_probability",
+          "risk_level",
+          "top_factors",
+          "generator_name",
+          "generator_version",
+          "generated_at"
+        ],
+        "title": "AppealGenerationResponse",
+        "type": "object"
+      },
+      "AppealHistoryEntry": {
+        "properties": {
+          "additional_context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Additional Context"
+          },
+          "appeal_letter": {
+            "title": "Appeal Letter",
+            "type": "string"
+          },
+          "denial_probability": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Probability"
+          },
+          "denial_reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason Code"
+          },
+          "denial_reason_description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Reason Description"
+          },
+          "generated_at": {
+            "format": "date-time",
+            "title": "Generated At",
+            "type": "string"
+          },
+          "generator_name": {
+            "title": "Generator Name",
+            "type": "string"
+          },
+          "generator_version": {
+            "title": "Generator Version",
+            "type": "string"
+          },
+          "key_points": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Key Points",
+            "type": "array"
+          },
+          "recommended_documents": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Recommended Documents",
+            "type": "array"
+          },
+          "risk_level": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/RiskLevel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tone": {
+            "$ref": "#/components/schemas/AppealTone"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "appeal_letter",
+          "key_points",
+          "recommended_documents",
+          "tone",
+          "top_factors",
+          "generator_name",
+          "generator_version",
+          "generated_at"
+        ],
+        "title": "AppealHistoryEntry",
+        "type": "object"
+      },
+      "AppealHistoryResponse": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/AppealHistoryEntry"
+            },
+            "title": "Entries",
+            "type": "array"
+          },
+          "external_claim_id": {
+            "title": "External Claim Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "entries"
+        ],
+        "title": "AppealHistoryResponse",
+        "type": "object"
+      },
+      "AppealTone": {
+        "enum": [
+          "concise",
+          "formal",
+          "detailed"
+        ],
+        "title": "AppealTone",
+        "type": "string"
+      },
+      "DenialOperatingPoint": {
+        "enum": [
+          "high_recall",
+          "balanced",
+          "high_precision"
+        ],
+        "title": "DenialOperatingPoint",
+        "type": "string"
+      },
+      "DenialScoreRequest": {
+        "example": {
+          "allowed_amount": 145.0,
+          "billed_amount": 210.0,
+          "claim_frequency_code": "1",
+          "cpt_code": "99214",
+          "data_source": "api",
+          "external_claim_id": "CLM-2026-000123",
+          "icd10_code": "M5450",
+          "is_emergency": false,
+          "modifier_1": "25",
+          "network_status": "in_network",
+          "patient_age": 57,
+          "patient_id": "PT00012345",
+          "patient_sex": "F",
+          "payer_id": 44,
+          "place_of_service": "11",
+          "prior_authorization_on_file": false,
+          "prior_authorization_required": true,
+          "provider_id": 1021,
+          "referral_on_file": false,
+          "service_date": "2026-02-13",
+          "submission_channel": "edi",
+          "units": 1
+        },
+        "properties": {
+          "allowed_amount": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Allowed Amount"
+          },
+          "billed_amount": {
+            "minimum": 0.0,
+            "title": "Billed Amount",
+            "type": "number"
+          },
+          "claim_frequency_code": {
+            "anyOf": [
+              {
+                "maxLength": 1,
+                "minLength": 1,
+                "pattern": "^[0-9A-Z]$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Claim Frequency Code"
+          },
+          "cpt_code": {
+            "pattern": "^[0-9]{5}$",
+            "title": "Cpt Code",
+            "type": "string"
+          },
+          "data_source": {
+            "default": "api",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Data Source",
+            "type": "string"
+          },
+          "external_claim_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "External Claim Id",
+            "type": "string"
+          },
+          "icd10_code": {
+            "pattern": "^[A-Z][0-9A-Z]{2,7}$",
+            "title": "Icd10 Code",
+            "type": "string"
+          },
+          "is_emergency": {
+            "default": false,
+            "title": "Is Emergency",
+            "type": "boolean"
+          },
+          "modifier_1": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 1"
+          },
+          "modifier_2": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 2"
+          },
+          "modifier_3": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 3"
+          },
+          "modifier_4": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 4"
+          },
+          "network_status": {
+            "$ref": "#/components/schemas/NetworkStatus",
+            "default": "unknown"
+          },
+          "patient_age": {
+            "anyOf": [
+              {
+                "maximum": 120.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Age"
+          },
+          "patient_id": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Id"
+          },
+          "patient_sex": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PatientSex"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payer_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Payer Id",
+            "type": "integer"
+          },
+          "place_of_service": {
+            "anyOf": [
+              {
+                "maxLength": 2,
+                "minLength": 2,
+                "pattern": "^[0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Of Service"
+          },
+          "prior_authorization_on_file": {
+            "default": false,
+            "title": "Prior Authorization On File",
+            "type": "boolean"
+          },
+          "prior_authorization_required": {
+            "default": false,
+            "title": "Prior Authorization Required",
+            "type": "boolean"
+          },
+          "provider_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Provider Id",
+            "type": "integer"
+          },
+          "referral_on_file": {
+            "default": false,
+            "title": "Referral On File",
+            "type": "boolean"
+          },
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "submission_channel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubmissionChannel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "units": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Units",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "service_date",
+          "provider_id",
+          "payer_id",
+          "cpt_code",
+          "icd10_code",
+          "billed_amount"
+        ],
+        "title": "DenialScoreRequest",
+        "type": "object"
+      },
+      "DenialScoreResponse": {
+        "example": {
+          "calibration_method": "none",
+          "calibration_version": "none",
+          "denial_probability": 0.37,
+          "explanation": {
+            "factors": [
+              {
+                "factor": "Auth not on file",
+                "impact": "increases_risk",
+                "source": "rule"
+              },
+              {
+                "factor": "Modifier 25 high-risk for this payer",
+                "impact": "increases_risk",
+                "source": "rule"
+              }
+            ],
+            "method": "rules_plus_model_importance_v1",
+            "note": "Model factors indicate association, not causality."
+          },
+          "model_name": "denial-risk-baseline",
+          "model_version": "0.1.0",
+          "operating_point": "high_recall",
+          "recommended_action": "Verify prior authorization and documentation completeness",
+          "risk_level": "moderate",
+          "risk_tier": "medium",
+          "scored_at": "2026-02-13T12:00:00Z",
+          "top_factors": [
+            "Auth not on file",
+            "Modifier 25 high-risk for this payer",
+            "Diagnosis-procedure mismatch pattern"
+          ]
+        },
+        "properties": {
+          "calibration_method": {
+            "title": "Calibration Method",
+            "type": "string"
+          },
+          "calibration_version": {
+            "title": "Calibration Version",
+            "type": "string"
+          },
+          "denial_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Denial Probability",
+            "type": "number"
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/ExplanationDetails"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "operating_point": {
+            "$ref": "#/components/schemas/DenialOperatingPoint"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "risk_level": {
+            "$ref": "#/components/schemas/RiskLevel"
+          },
+          "risk_tier": {
+            "$ref": "#/components/schemas/RiskTier"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "denial_probability",
+          "operating_point",
+          "risk_level",
+          "risk_tier",
+          "top_factors",
+          "explanation",
+          "recommended_action",
+          "model_name",
+          "model_version",
+          "calibration_method",
+          "calibration_version",
+          "scored_at"
+        ],
+        "title": "DenialScoreResponse",
+        "type": "object"
+      },
+      "ErrorResponse": {
+        "properties": {
+          "detail": {
+            "description": "Human-readable error detail.",
+            "title": "Detail",
+            "type": "string"
+          }
+        },
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorResponse",
+        "type": "object"
+      },
+      "ExplanationDetails": {
+        "properties": {
+          "factors": {
+            "items": {
+              "$ref": "#/components/schemas/ExplanationFactor"
+            },
+            "title": "Factors",
+            "type": "array"
+          },
+          "method": {
+            "title": "Method",
+            "type": "string"
+          },
+          "note": {
+            "title": "Note",
+            "type": "string"
+          }
+        },
+        "required": [
+          "method",
+          "factors",
+          "note"
+        ],
+        "title": "ExplanationDetails",
+        "type": "object"
+      },
+      "ExplanationFactor": {
+        "properties": {
+          "factor": {
+            "title": "Factor",
+            "type": "string"
+          },
+          "impact": {
+            "$ref": "#/components/schemas/ExplanationImpact"
+          },
+          "source": {
+            "$ref": "#/components/schemas/ExplanationSource"
+          }
+        },
+        "required": [
+          "factor",
+          "source",
+          "impact"
+        ],
+        "title": "ExplanationFactor",
+        "type": "object"
+      },
+      "ExplanationImpact": {
+        "enum": [
+          "increases_risk",
+          "decreases_risk",
+          "affects_estimate",
+          "decreases_estimate",
+          "increases_estimate"
+        ],
+        "title": "ExplanationImpact",
+        "type": "string"
+      },
+      "ExplanationSource": {
+        "enum": [
+          "rule",
+          "model"
+        ],
+        "title": "ExplanationSource",
+        "type": "string"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "HealthResponse": {
+        "properties": {
+          "calibrator_artifact_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calibrator Artifact Path"
+          },
+          "calibrator_loaded": {
+            "default": false,
+            "title": "Calibrator Loaded",
+            "type": "boolean"
+          },
+          "calibrator_method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Calibrator Method"
+          },
+          "denial_operating_point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DenialOperatingPoint"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "denial_operating_threshold": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Denial Operating Threshold"
+          },
+          "model_artifact_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Artifact Path"
+          },
+          "model_loaded": {
+            "title": "Model Loaded",
+            "type": "boolean"
+          },
+          "model_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Name"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model Version"
+          },
+          "prior_auth_model_artifact_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prior Auth Model Artifact Path"
+          },
+          "prior_auth_model_loaded": {
+            "default": false,
+            "title": "Prior Auth Model Loaded",
+            "type": "boolean"
+          },
+          "prior_auth_model_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prior Auth Model Name"
+          },
+          "prior_auth_model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prior Auth Model Version"
+          },
+          "prior_auth_threshold": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Prior Auth Threshold"
+          },
+          "reimbursement_model_artifact_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reimbursement Model Artifact Path"
+          },
+          "reimbursement_model_loaded": {
+            "default": false,
+            "title": "Reimbursement Model Loaded",
+            "type": "boolean"
+          },
+          "reimbursement_model_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reimbursement Model Name"
+          },
+          "reimbursement_model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reimbursement Model Version"
+          },
+          "scorer_mode": {
+            "title": "Scorer Mode",
+            "type": "string"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "title": "Timestamp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "timestamp",
+          "scorer_mode",
+          "model_loaded"
+        ],
+        "title": "HealthResponse",
+        "type": "object"
+      },
+      "LimitsResponse": {
+        "properties": {
+          "monthly_limit": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Limit"
+          },
+          "monthly_remaining": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Remaining"
+          },
+          "monthly_used": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Monthly Used",
+            "type": "integer"
+          },
+          "plan": {
+            "title": "Plan",
+            "type": "string"
+          },
+          "requests_per_second": {
+            "minimum": 1.0,
+            "title": "Requests Per Second",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "plan",
+          "requests_per_second"
+        ],
+        "title": "LimitsResponse",
+        "type": "object"
+      },
+      "NetworkStatus": {
+        "enum": [
+          "in_network",
+          "out_of_network",
+          "unknown"
+        ],
+        "title": "NetworkStatus",
+        "type": "string"
+      },
+      "PatientSex": {
+        "enum": [
+          "M",
+          "F",
+          "U"
+        ],
+        "title": "PatientSex",
+        "type": "string"
+      },
+      "PriorAuthHistoryEntry": {
+        "properties": {
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "predicted_required": {
+            "title": "Predicted Required",
+            "type": "boolean"
+          },
+          "prior_auth_required_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Prior Auth Required Probability",
+            "type": "number"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "prior_auth_required_probability",
+          "predicted_required",
+          "top_factors",
+          "recommended_action",
+          "model_name",
+          "model_version",
+          "scored_at"
+        ],
+        "title": "PriorAuthHistoryEntry",
+        "type": "object"
+      },
+      "PriorAuthHistoryResponse": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/PriorAuthHistoryEntry"
+            },
+            "title": "Entries",
+            "type": "array"
+          },
+          "external_claim_id": {
+            "title": "External Claim Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "entries"
+        ],
+        "title": "PriorAuthHistoryResponse",
+        "type": "object"
+      },
+      "PriorAuthPayerSupport": {
+        "properties": {
+          "auc": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Auc"
+          },
+          "positive_count": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Positive Count"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "sample_count": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sample Count"
+          },
+          "support_level": {
+            "$ref": "#/components/schemas/RiskLevel"
+          },
+          "supported": {
+            "title": "Supported",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "support_level",
+          "supported"
+        ],
+        "title": "PriorAuthPayerSupport",
+        "type": "object"
+      },
+      "PriorAuthPredictionRequest": {
+        "example": {
+          "billed_amount": 210.0,
+          "claim_frequency_code": "1",
+          "cpt_code": "99214",
+          "data_source": "api",
+          "external_claim_id": "CLM-2026-PA-000123",
+          "icd10_code": "M5450",
+          "is_emergency": false,
+          "modifier_1": "25",
+          "network_status": "in_network",
+          "patient_age": 57,
+          "patient_id": "PT00012345",
+          "patient_sex": "F",
+          "payer_id": 44,
+          "place_of_service": "11",
+          "prior_authorization_on_file": false,
+          "provider_id": 1021,
+          "referral_on_file": false,
+          "service_date": "2026-02-13",
+          "submission_channel": "edi",
+          "units": 1
+        },
+        "properties": {
+          "billed_amount": {
+            "minimum": 0.0,
+            "title": "Billed Amount",
+            "type": "number"
+          },
+          "claim_frequency_code": {
+            "anyOf": [
+              {
+                "maxLength": 1,
+                "minLength": 1,
+                "pattern": "^[0-9A-Z]$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Claim Frequency Code"
+          },
+          "cpt_code": {
+            "pattern": "^[0-9]{5}$",
+            "title": "Cpt Code",
+            "type": "string"
+          },
+          "data_source": {
+            "default": "api",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Data Source",
+            "type": "string"
+          },
+          "external_claim_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "External Claim Id",
+            "type": "string"
+          },
+          "icd10_code": {
+            "pattern": "^[A-Z][0-9A-Z]{2,7}$",
+            "title": "Icd10 Code",
+            "type": "string"
+          },
+          "is_emergency": {
+            "default": false,
+            "title": "Is Emergency",
+            "type": "boolean"
+          },
+          "modifier_1": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 1"
+          },
+          "modifier_2": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 2"
+          },
+          "modifier_3": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 3"
+          },
+          "modifier_4": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 4"
+          },
+          "network_status": {
+            "$ref": "#/components/schemas/NetworkStatus",
+            "default": "unknown"
+          },
+          "patient_age": {
+            "anyOf": [
+              {
+                "maximum": 120.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Age"
+          },
+          "patient_id": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Id"
+          },
+          "patient_sex": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PatientSex"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payer_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Payer Id",
+            "type": "integer"
+          },
+          "place_of_service": {
+            "anyOf": [
+              {
+                "maxLength": 2,
+                "minLength": 2,
+                "pattern": "^[0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Of Service"
+          },
+          "prior_authorization_on_file": {
+            "default": false,
+            "title": "Prior Authorization On File",
+            "type": "boolean"
+          },
+          "provider_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Provider Id",
+            "type": "integer"
+          },
+          "referral_on_file": {
+            "default": false,
+            "title": "Referral On File",
+            "type": "boolean"
+          },
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "submission_channel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubmissionChannel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "units": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Units",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "service_date",
+          "provider_id",
+          "payer_id",
+          "cpt_code",
+          "icd10_code",
+          "billed_amount"
+        ],
+        "title": "PriorAuthPredictionRequest",
+        "type": "object"
+      },
+      "PriorAuthPredictionResponse": {
+        "properties": {
+          "calibration_method": {
+            "title": "Calibration Method",
+            "type": "string"
+          },
+          "calibration_version": {
+            "title": "Calibration Version",
+            "type": "string"
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/ExplanationDetails"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "payer_support": {
+            "$ref": "#/components/schemas/PriorAuthPayerSupport"
+          },
+          "predicted_required": {
+            "title": "Predicted Required",
+            "type": "boolean"
+          },
+          "prior_auth_required_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Prior Auth Required Probability",
+            "type": "number"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "prior_auth_required_probability",
+          "predicted_required",
+          "payer_support",
+          "top_factors",
+          "explanation",
+          "recommended_action",
+          "model_name",
+          "model_version",
+          "calibration_method",
+          "calibration_version",
+          "scored_at"
+        ],
+        "title": "PriorAuthPredictionResponse",
+        "type": "object"
+      },
+      "ReadinessResponse": {
+        "properties": {
+          "checks": {
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "title": "Checks",
+            "type": "object"
+          },
+          "detail": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Detail"
+          },
+          "ready": {
+            "title": "Ready",
+            "type": "boolean"
+          },
+          "service": {
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "title": "Timestamp",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "service",
+          "timestamp",
+          "ready",
+          "checks"
+        ],
+        "title": "ReadinessResponse",
+        "type": "object"
+      },
+      "ReimbursementEstimateRequest": {
+        "example": {
+          "billed_amount": 210.0,
+          "claim_frequency_code": "1",
+          "cpt_code": "99214",
+          "data_source": "api",
+          "external_claim_id": "CLM-2026-RMB-000123",
+          "icd10_code": "M5450",
+          "is_emergency": false,
+          "modifier_1": "25",
+          "network_status": "in_network",
+          "patient_age": 57,
+          "patient_id": "PT00012345",
+          "patient_sex": "F",
+          "payer_id": 44,
+          "place_of_service": "11",
+          "prior_authorization_on_file": false,
+          "prior_authorization_required": true,
+          "provider_id": 1021,
+          "referral_on_file": false,
+          "service_date": "2026-02-13",
+          "submission_channel": "edi",
+          "units": 1
+        },
+        "properties": {
+          "billed_amount": {
+            "minimum": 0.0,
+            "title": "Billed Amount",
+            "type": "number"
+          },
+          "claim_frequency_code": {
+            "anyOf": [
+              {
+                "maxLength": 1,
+                "minLength": 1,
+                "pattern": "^[0-9A-Z]$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Claim Frequency Code"
+          },
+          "cpt_code": {
+            "pattern": "^[0-9]{5}$",
+            "title": "Cpt Code",
+            "type": "string"
+          },
+          "data_source": {
+            "default": "api",
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Data Source",
+            "type": "string"
+          },
+          "external_claim_id": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "External Claim Id",
+            "type": "string"
+          },
+          "icd10_code": {
+            "pattern": "^[A-Z][0-9A-Z]{2,7}$",
+            "title": "Icd10 Code",
+            "type": "string"
+          },
+          "is_emergency": {
+            "default": false,
+            "title": "Is Emergency",
+            "type": "boolean"
+          },
+          "modifier_1": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 1"
+          },
+          "modifier_2": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 2"
+          },
+          "modifier_3": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 3"
+          },
+          "modifier_4": {
+            "anyOf": [
+              {
+                "pattern": "^[A-Z0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Modifier 4"
+          },
+          "network_status": {
+            "$ref": "#/components/schemas/NetworkStatus",
+            "default": "unknown"
+          },
+          "patient_age": {
+            "anyOf": [
+              {
+                "maximum": 120.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Age"
+          },
+          "patient_id": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Patient Id"
+          },
+          "patient_sex": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PatientSex"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payer_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Payer Id",
+            "type": "integer"
+          },
+          "place_of_service": {
+            "anyOf": [
+              {
+                "maxLength": 2,
+                "minLength": 2,
+                "pattern": "^[0-9]{2}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Place Of Service"
+          },
+          "prior_authorization_on_file": {
+            "default": false,
+            "title": "Prior Authorization On File",
+            "type": "boolean"
+          },
+          "prior_authorization_required": {
+            "default": false,
+            "title": "Prior Authorization Required",
+            "type": "boolean"
+          },
+          "provider_id": {
+            "exclusiveMinimum": 0.0,
+            "title": "Provider Id",
+            "type": "integer"
+          },
+          "referral_on_file": {
+            "default": false,
+            "title": "Referral On File",
+            "type": "boolean"
+          },
+          "service_date": {
+            "format": "date",
+            "title": "Service Date",
+            "type": "string"
+          },
+          "submission_channel": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubmissionChannel"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "units": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Units",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "service_date",
+          "provider_id",
+          "payer_id",
+          "cpt_code",
+          "icd10_code",
+          "billed_amount"
+        ],
+        "title": "ReimbursementEstimateRequest",
+        "type": "object"
+      },
+      "ReimbursementEstimateResponse": {
+        "properties": {
+          "confidence_band_high": {
+            "minimum": 0.0,
+            "title": "Confidence Band High",
+            "type": "number"
+          },
+          "confidence_band_low": {
+            "minimum": 0.0,
+            "title": "Confidence Band Low",
+            "type": "number"
+          },
+          "expected_allowed_amount": {
+            "minimum": 0.0,
+            "title": "Expected Allowed Amount",
+            "type": "number"
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/ExplanationDetails"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "reimbursement_ratio": {
+            "minimum": 0.0,
+            "title": "Reimbursement Ratio",
+            "type": "number"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "expected_allowed_amount",
+          "reimbursement_ratio",
+          "confidence_band_low",
+          "confidence_band_high",
+          "top_factors",
+          "explanation",
+          "recommended_action",
+          "model_name",
+          "model_version",
+          "scored_at"
+        ],
+        "title": "ReimbursementEstimateResponse",
+        "type": "object"
+      },
+      "ReimbursementHistoryEntry": {
+        "properties": {
+          "confidence_band_high": {
+            "minimum": 0.0,
+            "title": "Confidence Band High",
+            "type": "number"
+          },
+          "confidence_band_low": {
+            "minimum": 0.0,
+            "title": "Confidence Band Low",
+            "type": "number"
+          },
+          "expected_allowed_amount": {
+            "minimum": 0.0,
+            "title": "Expected Allowed Amount",
+            "type": "number"
+          },
+          "model_name": {
+            "title": "Model Name",
+            "type": "string"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "recommended_action": {
+            "title": "Recommended Action",
+            "type": "string"
+          },
+          "reimbursement_ratio": {
+            "minimum": 0.0,
+            "title": "Reimbursement Ratio",
+            "type": "number"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "expected_allowed_amount",
+          "reimbursement_ratio",
+          "confidence_band_low",
+          "confidence_band_high",
+          "top_factors",
+          "recommended_action",
+          "model_name",
+          "model_version",
+          "scored_at"
+        ],
+        "title": "ReimbursementHistoryEntry",
+        "type": "object"
+      },
+      "ReimbursementHistoryResponse": {
+        "properties": {
+          "entries": {
+            "items": {
+              "$ref": "#/components/schemas/ReimbursementHistoryEntry"
+            },
+            "title": "Entries",
+            "type": "array"
+          },
+          "external_claim_id": {
+            "title": "External Claim Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "external_claim_id",
+          "entries"
+        ],
+        "title": "ReimbursementHistoryResponse",
+        "type": "object"
+      },
+      "RiskLevel": {
+        "enum": [
+          "low",
+          "moderate",
+          "high"
+        ],
+        "title": "RiskLevel",
+        "type": "string"
+      },
+      "RiskTier": {
+        "enum": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "title": "RiskTier",
+        "type": "string"
+      },
+      "ScoreRequest": {
+        "example": {
+          "options": {
+            "allow_fallback": true,
+            "model_version": "0.3.3",
+            "operating_point": "high_recall"
+          },
+          "payload": {
+            "allowed_amount": 145.0,
+            "billed_amount": 210.0,
+            "claim_frequency_code": "1",
+            "cpt_code": "99214",
+            "data_source": "api",
+            "external_claim_id": "CLM-2026-000123",
+            "icd10_code": "M5450",
+            "is_emergency": false,
+            "modifier_1": "25",
+            "network_status": "in_network",
+            "patient_age": 57,
+            "patient_id": "PT00012345",
+            "patient_sex": "F",
+            "payer_id": 44,
+            "place_of_service": "11",
+            "prior_authorization_on_file": false,
+            "prior_authorization_required": true,
+            "provider_id": 1021,
+            "referral_on_file": false,
+            "service_date": "2026-02-13",
+            "submission_channel": "edi",
+            "units": 1
+          },
+          "workflow": "healthcare.denial"
+        },
+        "properties": {
+          "options": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreRequestOptions"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "payload": {
+            "additionalProperties": true,
+            "description": "Workflow payload object. Payload schema depends on `workflow`; see `x-workflowSchemas` for schema references.",
+            "title": "Payload",
+            "type": "object"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowId"
+          }
+        },
+        "required": [
+          "workflow",
+          "payload"
+        ],
+        "title": "ScoreRequest",
+        "type": "object",
+        "x-workflowSchemas": {
+          "healthcare.denial": "#/components/schemas/DenialScoreRequest",
+          "healthcare.prior_auth": "#/components/schemas/PriorAuthPredictionRequest",
+          "healthcare.reimbursement": "#/components/schemas/ReimbursementEstimateRequest"
+        }
+      },
+      "ScoreRequestOptions": {
+        "properties": {
+          "allow_fallback": {
+            "default": true,
+            "description": "When true, scoring can fall back to the current runtime model if `model_version` is unavailable. When false, unavailable version requests return 409.",
+            "title": "Allow Fallback",
+            "type": "boolean"
+          },
+          "model_version": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional model version pin request.",
+            "title": "Model Version"
+          },
+          "operating_point": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DenialOperatingPoint"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Optional decision profile for denial scoring only (`workflow=healthcare.denial`). Ignored for other workflows."
+          }
+        },
+        "title": "ScoreRequestOptions",
+        "type": "object"
+      },
+      "ScoreResponse": {
+        "properties": {
+          "confidence": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Confidence",
+            "type": "number"
+          },
+          "details": {
+            "$ref": "#/components/schemas/ScoreResponseDetails"
+          },
+          "explanation": {
+            "$ref": "#/components/schemas/ScoreResponseExplanation"
+          },
+          "model_version": {
+            "title": "Model Version",
+            "type": "string"
+          },
+          "risk_level": {
+            "$ref": "#/components/schemas/RiskLevel"
+          },
+          "score": {
+            "description": "Unified score output. For denial and prior-auth workflows, this is a calibrated probability (0-1). For reimbursement, this is a normalized risk score derived as `1 - reimbursement_ratio`.",
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Score",
+            "type": "number"
+          },
+          "scored_at": {
+            "format": "date-time",
+            "title": "Scored At",
+            "type": "string"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowId"
+          }
+        },
+        "required": [
+          "workflow",
+          "score",
+          "risk_level",
+          "confidence",
+          "model_version",
+          "explanation",
+          "details",
+          "scored_at"
+        ],
+        "title": "ScoreResponse",
+        "type": "object"
+      },
+      "ScoreResponseDenialDetails": {
+        "properties": {
+          "denial_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Denial Probability",
+            "type": "number"
+          },
+          "operating_point": {
+            "$ref": "#/components/schemas/DenialOperatingPoint"
+          }
+        },
+        "required": [
+          "denial_probability",
+          "operating_point"
+        ],
+        "title": "ScoreResponseDenialDetails",
+        "type": "object"
+      },
+      "ScoreResponseDetails": {
+        "properties": {
+          "denial": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreResponseDenialDetails"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "prior_auth": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreResponsePriorAuthDetails"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reimbursement": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ScoreResponseReimbursementDetails"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "requested_model_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requested Model Version"
+          },
+          "version_resolution": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version Resolution"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowId"
+          }
+        },
+        "required": [
+          "workflow"
+        ],
+        "title": "ScoreResponseDetails",
+        "type": "object"
+      },
+      "ScoreResponseExplanation": {
+        "properties": {
+          "method": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Method"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "top_factors": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Top Factors",
+            "type": "array"
+          }
+        },
+        "required": [
+          "top_factors"
+        ],
+        "title": "ScoreResponseExplanation",
+        "type": "object"
+      },
+      "ScoreResponsePriorAuthDetails": {
+        "properties": {
+          "predicted_required": {
+            "title": "Predicted Required",
+            "type": "boolean"
+          },
+          "prior_auth_required_probability": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Prior Auth Required Probability",
+            "type": "number"
+          }
+        },
+        "required": [
+          "prior_auth_required_probability",
+          "predicted_required"
+        ],
+        "title": "ScoreResponsePriorAuthDetails",
+        "type": "object"
+      },
+      "ScoreResponseReimbursementDetails": {
+        "properties": {
+          "confidence_band_high": {
+            "minimum": 0.0,
+            "title": "Confidence Band High",
+            "type": "number"
+          },
+          "confidence_band_low": {
+            "minimum": 0.0,
+            "title": "Confidence Band Low",
+            "type": "number"
+          },
+          "expected_allowed_amount": {
+            "minimum": 0.0,
+            "title": "Expected Allowed Amount",
+            "type": "number"
+          },
+          "reimbursement_ratio": {
+            "minimum": 0.0,
+            "title": "Reimbursement Ratio",
+            "type": "number"
+          }
+        },
+        "required": [
+          "expected_allowed_amount",
+          "reimbursement_ratio",
+          "confidence_band_low",
+          "confidence_band_high"
+        ],
+        "title": "ScoreResponseReimbursementDetails",
+        "type": "object"
+      },
+      "SubmissionChannel": {
+        "enum": [
+          "edi",
+          "portal",
+          "paper",
+          "api"
+        ],
+        "title": "SubmissionChannel",
+        "type": "string"
+      },
+      "UsageReportResponse": {
+        "properties": {
+          "monthly_limit": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Limit"
+          },
+          "monthly_remaining": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Monthly Remaining"
+          },
+          "monthly_used": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Monthly Used",
+            "type": "integer"
+          },
+          "plan": {
+            "title": "Plan",
+            "type": "string"
+          },
+          "requests_per_second": {
+            "minimum": 1.0,
+            "title": "Requests Per Second",
+            "type": "integer"
+          },
+          "usage_month": {
+            "format": "date",
+            "title": "Usage Month",
+            "type": "string"
+          },
+          "workflows": {
+            "items": {
+              "$ref": "#/components/schemas/UsageWorkflowEntry"
+            },
+            "title": "Workflows",
+            "type": "array"
+          }
+        },
+        "required": [
+          "plan",
+          "usage_month",
+          "requests_per_second"
+        ],
+        "title": "UsageReportResponse",
+        "type": "object"
+      },
+      "UsageWorkflowEntry": {
+        "properties": {
+          "billable_count": {
+            "minimum": 0.0,
+            "title": "Billable Count",
+            "type": "integer"
+          },
+          "request_count": {
+            "minimum": 0.0,
+            "title": "Request Count",
+            "type": "integer"
+          },
+          "workflow": {
+            "title": "Workflow",
+            "type": "string"
+          }
+        },
+        "required": [
+          "workflow",
+          "request_count",
+          "billable_count"
+        ],
+        "title": "UsageWorkflowEntry",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WorkflowId": {
+        "enum": [
+          "healthcare.denial",
+          "healthcare.prior_auth",
+          "healthcare.reimbursement"
+        ],
+        "title": "WorkflowId",
+        "type": "string"
+      },
+      "WorkflowSummary": {
+        "properties": {
+          "current_model_version": {
+            "title": "Current Model Version",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "public": {
+            "default": true,
+            "title": "Public",
+            "type": "boolean"
+          },
+          "workflow": {
+            "$ref": "#/components/schemas/WorkflowId"
+          }
+        },
+        "required": [
+          "workflow",
+          "description",
+          "current_model_version"
+        ],
+        "title": "WorkflowSummary",
+        "type": "object"
+      },
+      "WorkflowsResponse": {
+        "properties": {
+          "version": {
+            "title": "Version",
+            "type": "string"
+          },
+          "workflows": {
+            "description": "Currently supported workflows. Additional workflows may be added in future without breaking changes; clients should handle unknown workflow ids gracefully.",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowSummary"
+            },
+            "title": "Workflows",
+            "type": "array"
+          }
+        },
+        "required": [
+          "version",
+          "workflows"
+        ],
+        "title": "WorkflowsResponse",
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "HTTPBearer": {
+        "bearerFormat": "APIKey",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "Workflow-based scoring API for automated decision systems. Healthcare denial, prior-auth, and reimbursement workflows are supported first.",
+    "summary": "Scoring primitives for automated decision workflows",
+    "title": "Sentinel Signal API",
+    "version": "0.1.66"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [],
+        "summary": "Health",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/readyz": {
+      "get": {
+        "operationId": "readyz_readyz_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [],
+        "summary": "Readyz",
+        "tags": [
+          "system"
+        ]
+      }
+    },
+    "/v1/claims/appeals/generate": {
+      "post": {
+        "operationId": "generate_claim_appeal_v1_claims_appeals_generate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AppealGenerationRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppealGenerationResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Beta (enterprise): generate an appeal draft downstream of denial risk",
+        "tags": [
+          "beta-enterprise"
+        ],
+        "x-public": false
+      }
+    },
+    "/v1/claims/denial/score": {
+      "post": {
+        "deprecated": true,
+        "operationId": "score_denial_risk_v1_claims_denial_score_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DenialScoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DenialScoreResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Legacy: use /v1/score with workflow=healthcare.denial",
+        "tags": [
+          "denial-risk"
+        ]
+      }
+    },
+    "/v1/claims/prior-auth/predict": {
+      "post": {
+        "deprecated": true,
+        "operationId": "predict_prior_authorization_v1_claims_prior_auth_predict_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PriorAuthPredictionRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorAuthPredictionResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Legacy: use /v1/score with workflow=healthcare.prior_auth",
+        "tags": [
+          "prior-auth"
+        ]
+      }
+    },
+    "/v1/claims/reimbursement/estimate": {
+      "post": {
+        "deprecated": true,
+        "operationId": "estimate_claim_reimbursement_v1_claims_reimbursement_estimate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReimbursementEstimateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReimbursementEstimateResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Legacy: use /v1/score with workflow=healthcare.reimbursement",
+        "tags": [
+          "reimbursement"
+        ]
+      }
+    },
+    "/v1/claims/{external_claim_id}/appeals/history": {
+      "get": {
+        "operationId": "get_appeal_history_by_claim_id_v1_claims__external_claim_id__appeals_history_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "external_claim_id",
+            "required": true,
+            "schema": {
+              "title": "External Claim Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AppealHistoryResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Beta (enterprise): get persisted appeal drafts for a claim",
+        "tags": [
+          "beta-enterprise"
+        ],
+        "x-public": false
+      }
+    },
+    "/v1/claims/{external_claim_id}/prior-auth/history": {
+      "get": {
+        "operationId": "get_prior_auth_history_by_claim_id_v1_claims__external_claim_id__prior_auth_history_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "external_claim_id",
+            "required": true,
+            "schema": {
+              "title": "External Claim Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PriorAuthHistoryResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get persisted prior-auth predictions for a claim",
+        "tags": [
+          "history"
+        ]
+      }
+    },
+    "/v1/claims/{external_claim_id}/reimbursement/history": {
+      "get": {
+        "operationId": "get_reimbursement_history_by_claim_id_v1_claims__external_claim_id__reimbursement_history_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "external_claim_id",
+            "required": true,
+            "schema": {
+              "title": "External Claim Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReimbursementHistoryResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Get persisted reimbursement estimates for a claim",
+        "tags": [
+          "history"
+        ]
+      }
+    },
+    "/v1/limits": {
+      "get": {
+        "operationId": "get_limits_v1_limits_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LimitsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Return plan limits for the current API token",
+        "tags": [
+          "scoring"
+        ]
+      }
+    },
+    "/v1/score": {
+      "post": {
+        "operationId": "score_workflow_v1_score_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScoreResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Conflict"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "429": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Too Many Requests"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            },
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Unified workflow scoring endpoint",
+        "tags": [
+          "scoring"
+        ]
+      }
+    },
+    "/v1/usage": {
+      "get": {
+        "operationId": "get_usage_report_v1_usage_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "month",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "pattern": "^\\\\d{4}-\\\\d{2}$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Month"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsageReportResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "Return usage report for current API key",
+        "tags": [
+          "scoring"
+        ]
+      }
+    },
+    "/v1/workflows": {
+      "get": {
+        "operationId": "list_workflows_v1_workflows_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowsResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "summary": "List publicly supported workflows",
+        "tags": [
+          "scoring"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "HTTPBearer": []
+    }
+  ]
+}
