@@ -12,23 +12,31 @@ This repository exposes only public integration assets:
 
 ## API Surface
 
-Primary endpoint:
+Scoring:
 - `POST /v1/score`
+- `POST /v1/score/batch`
+- `POST /v1/workflows/{workflow}/validate` (validate a payload without scoring)
 
-Metadata endpoints:
+Discovery and account:
 - `GET /v1/workflows`
+- `GET /v1/workflows/{workflow}/schema`
 - `GET /v1/limits`
 - `GET /v1/usage`
+
+Outcome feedback:
+- `POST /v1/feedback`
 
 ## OpenAPI Spec
 
 - `openapi/openapi.json`
 
+The spec is generated from the production API contract and must not be edited by hand. The SDKs, mock server and Postman collection are tested against it in CI (`tests/test_contract.py`), so a change to the contract fails CI until they cover it.
+
 ## Examples
 
 - `examples/python_client.py`
 - `examples/js_client.js`
-- `examples/postman_collection.json`
+- `examples/postman_collection.json` (generated: `python tools/generate_postman.py`)
 
 ## Minimal SDKs
 
@@ -47,11 +55,14 @@ pip install -r requirements.txt
 uvicorn main:app --host 0.0.0.0 --port 8010
 ```
 
-Mock endpoints:
-- `POST http://localhost:8010/v1/score`
-- `GET http://localhost:8010/v1/workflows`
-- `GET http://localhost:8010/v1/limits`
-- `GET http://localhost:8010/v1/usage`
+The mock serves every operation in `openapi/openapi.json` at `http://localhost:8010`. It requires a Bearer key (any value), validates request bodies against the spec (422 on mismatch) and returns schema-valid responses with deterministic scores derived from the payload.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest -q tests
+```
 
 ## Public Docs
 
@@ -59,7 +70,11 @@ Mock endpoints:
 - `docs/billing.md`
 - `docs/integration.md`
 
-## Security and Secrets Policy
+## License and Security
+
+MIT licensed (see `LICENSE`). Report vulnerabilities as described in `SECURITY.md`.
+
+## Secrets Policy
 
 This public repository never contains live billing credentials or active Stripe identifiers.
 Use placeholders only, for example:

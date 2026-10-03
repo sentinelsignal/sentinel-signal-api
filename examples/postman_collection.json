@@ -1,50 +1,154 @@
 {
   "info": {
     "name": "Sentinel Signal Public API",
+    "description": "Generated from openapi/openapi.json (API 1.0.825).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "variable": [
-    {"key": "baseUrl", "value": "https://api.sentinelsignal.io"},
-    {"key": "apiKey", "value": "YOUR_API_KEY"}
+    {
+      "key": "baseUrl",
+      "value": "https://api.sentinelsignal.io"
+    },
+    {
+      "key": "apiKey",
+      "value": "YOUR_API_KEY"
+    }
   ],
   "item": [
     {
-      "name": "Score",
+      "name": "Submit structured outcome feedback for a prior scoring request",
       "request": {
         "method": "POST",
         "header": [
-          {"key": "Authorization", "value": "Bearer {{apiKey}}"},
-          {"key": "Content-Type", "value": "application/json"}
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
         ],
-        "url": "{{baseUrl}}/v1/score",
+        "url": "{{baseUrl}}/v1/feedback",
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"workflow\": \"healthcare.denial\",\n  \"payload\": {\n    \"payer\": \"PAYER_X\",\n    \"cpt\": \"99213\",\n    \"icd10\": [\"E11.9\"],\n    \"billed_amount\": 250.0,\n    \"place_of_service\": \"11\",\n    \"in_network\": true\n  },\n  \"options\": {\n    \"operating_point\": \"high_recall\",\n    \"allow_fallback\": true\n  }\n}"
+          "raw": "{\n  \"confidence_mismatch\": true,\n  \"cpt\": \"99214\",\n  \"days_to_outcome\": 12,\n  \"denial_reason_code\": \"AUTH_MISSING\",\n  \"endpoint\": \"denial\",\n  \"expected_outcome\": \"paid\",\n  \"notes\": \"Unexpected denial despite low predicted risk for this payer segment.\",\n  \"observed_outcome\": \"denied\",\n  \"payer_id\": 44,\n  \"request_id\": \"8c6f0f7e-8b0e-42bc-b684-e272e0dad3d8\",\n  \"severity\": \"med\"\n}"
         }
       }
     },
     {
-      "name": "Workflows",
+      "name": "Return plan limits for the current API token",
       "request": {
         "method": "GET",
-        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
-        "url": "{{baseUrl}}/v1/workflows"
-      }
-    },
-    {
-      "name": "Limits",
-      "request": {
-        "method": "GET",
-        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          }
+        ],
         "url": "{{baseUrl}}/v1/limits"
       }
     },
     {
-      "name": "Usage",
+      "name": "Unified workflow scoring endpoint",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/v1/score",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"options\": {\n    \"allow_fallback\": true,\n    \"distribution_profile\": \"commercial_beta\",\n    \"model_version\": \"0.3.3\",\n    \"operating_point\": \"high_recall\"\n  },\n  \"payload\": {\n    \"allowed_amount\": 145.0,\n    \"billed_amount\": 210.0,\n    \"claim_frequency_code\": \"1\",\n    \"cpt_code\": \"99214\",\n    \"data_source\": \"api\",\n    \"external_claim_id\": \"CLM-2026-000123\",\n    \"icd10_code\": \"M5450\",\n    \"is_emergency\": false,\n    \"modifier_1\": \"25\",\n    \"network_status\": \"in_network\",\n    \"patient_age\": 57,\n    \"patient_id\": \"PT00012345\",\n    \"patient_sex\": \"F\",\n    \"payer_id\": 44,\n    \"place_of_service\": \"11\",\n    \"prior_authorization_on_file\": false,\n    \"prior_authorization_required\": true,\n    \"provider_id\": 1021,\n    \"referral_on_file\": false,\n    \"service_date\": \"2026-02-13\",\n    \"submission_channel\": \"edi\",\n    \"units\": 1\n  },\n  \"workflow\": \"healthcare.denial\"\n}"
+        }
+      }
+    },
+    {
+      "name": "Batch workflow scoring endpoint",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/v1/score/batch",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"continue_on_error\": true,\n  \"items\": [\n    {\n      \"options\": {\n        \"allow_fallback\": true,\n        \"distribution_profile\": \"commercial_beta\",\n        \"model_version\": \"0.3.3\",\n        \"operating_point\": \"high_recall\"\n      },\n      \"payload\": {\n        \"allowed_amount\": 145.0,\n        \"billed_amount\": 210.0,\n        \"claim_frequency_code\": \"1\",\n        \"cpt_code\": \"99214\",\n        \"data_source\": \"api\",\n        \"external_claim_id\": \"CLM-2026-000123\",\n        \"icd10_code\": \"M5450\",\n        \"is_emergency\": false,\n        \"modifier_1\": \"25\",\n        \"network_status\": \"in_network\",\n        \"patient_age\": 57,\n        \"patient_id\": \"PT00012345\",\n        \"patient_sex\": \"F\",\n        \"payer_id\": 44,\n        \"place_of_service\": \"11\",\n        \"prior_authorization_on_file\": false,\n        \"prior_authorization_required\": true,\n        \"provider_id\": 1021,\n        \"referral_on_file\": false,\n        \"service_date\": \"2026-02-13\",\n        \"submission_channel\": \"edi\",\n        \"units\": 1\n      },\n      \"workflow\": \"healthcare.denial\"\n    }\n  ]\n}"
+        }
+      }
+    },
+    {
+      "name": "Return usage report for current API key",
       "request": {
         "method": "GET",
-        "header": [{"key": "Authorization", "value": "Bearer {{apiKey}}"}],
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          }
+        ],
         "url": "{{baseUrl}}/v1/usage"
+      }
+    },
+    {
+      "name": "List publicly supported workflows",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/v1/workflows"
+      }
+    },
+    {
+      "name": "Return the request schema for a workflow",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          }
+        ],
+        "url": "{{baseUrl}}/v1/workflows/healthcare.denial/schema"
+      }
+    },
+    {
+      "name": "Validate a workflow payload without scoring",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{apiKey}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/v1/workflows/healthcare.denial/validate",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"payload\": {}\n}"
+        }
       }
     }
   ]
